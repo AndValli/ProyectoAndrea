@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+
+<head th:insert="librerias::librerias">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+	<title>App</title>
+
+	
+</head>
+
+<body>
+
+	<header>
+	 
+		<div th:insert="top::top"></div>
+	 
+	</header>
+
+	<div class="row">
+		<div class="col-4 mt-5 m-auto">
+			<h1 class="h3 text-grey-900"> Acceso al sistema</h1>
+			<div th:if="${param.error}">
+				<p class="alert alert-danger btn-sm m-2">Usuario o contraseña incorrectos</p>
+			</div>
+			<div th:if="${param.exito}">
+				<p class="alert alert-info">Registrado correctamente, introduce usuario y contraseña</p>
+			</div>
+			<div th:if="${param.logout}">
+				<p class="alert alert-info">Sesion cerrada correctamente</p>
+			</div>
+
+			<form method="POST" action="/login">
+				<div class="form-row">
+					<div class="form-group col-8">
+						<label for="inputNombre">Usuario/a</label>
+						<input placeholder="Usuario/a" type="text" id="username" name="username" required="true"
+							class="form-control text-grey-900" />
+
+					</div>
+				</div>
+
+				<div class="form-row">
+					<div class="form-group col-8">
+						<label for="inputPass">Contraseña</label>
+						<div class="input-group" id="show_hide_password">
+							<input placeholder="Password" type="Password" name="password" id="password" required="true"
+								class="form-control text-grey-900" />
+
+							<div class="input-group-text">
+								<a href=""><i class="fa fa-eye-slash" arial-hidden="true"></i></a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="form-row m-auto">
+					<input type="submit" value="Acceder" class="btn btn-primary float-right mt-3" />
+				</div>
+
+
+
+				<div class="form-row m-auto">
+					<br> <a href="/forgot" class="float-left mt-5 mr-3">¿Olvidaste tu contraseña?</a>
+				</div>
+
+				<div th:unless="${param.exito}">
+					<div class="row">
+						<div class="col-8 mt-5 m-auto">
+							<div class="form-group col-20">
+								<label for="inputSinRegistro">¿Aún no tienes cuenta?</label>
+								<a class="float-left mt-5 mr-3"
+									th:href="@{/usuarios/add}">Registrate</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</form>
+
+
+		</div>
+
+	</div>
+	</footer>
+
+
+</body>
+
+</html>
